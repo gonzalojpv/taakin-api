@@ -1,7 +1,6 @@
 <?php
 namespace Todos\Middleware;
 use Todos\Models\User;
-
 /**
  *
  */
@@ -9,7 +8,7 @@ class Authentication
 {
   public function authenticate( $request, $app ) {
 
-    $auth = $request->headers->get("Authorization");
+    $auth = $request->headers->get("auth");
     $apikey = substr($auth, strpos($auth, ' '));
     $apikey = trim($apikey);
     $user = new User();
@@ -18,7 +17,7 @@ class Authentication
     if ( !$check )
       $app->abort(401);
     else {
-      $request->atrributes->set( 'userid', $check );
+      $request->attributes->set( 'userid', $check );
     }
 
   }

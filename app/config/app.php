@@ -18,9 +18,5 @@ $capsule->addConnection([
 
 $capsule->bootEloquent();
 
-$app->before(function($request, $app) {
-  TodoAuth::authenticate($request, $app);
-});
-
 return $app;
 ?>
