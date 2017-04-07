@@ -2,6 +2,7 @@
 namespace Todos\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Todos\Models\Message as MessageModel;
 /**
  *
@@ -80,6 +81,13 @@ class Message {
 
   public static function destroy($id){
     // delete the message #id, using DELETE method
+    $message = MessageModel::find( $id );
+    $message->delete();
+
+    if ( $message->exists )
+      return new Response( '', 400 );
+    else
+      return new Response( '', 204 );
   }
 }
 
