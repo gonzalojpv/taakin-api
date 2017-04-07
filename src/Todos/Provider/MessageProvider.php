@@ -14,6 +14,8 @@ class MessageProvider implements ControllerProviderInterface {
     $message = $app["controllers_factory"];
     $self = new Message();
 
+    $message->get("/", array( $self, "index" ) );
+
     $message->post("/create", array( $self, "store" ) );
 
     $message->get("/{id}", array( $self, "show" ) );
