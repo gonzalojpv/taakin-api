@@ -25,10 +25,6 @@ class Message {
     return json_encode($payload, JSON_UNESCAPED_SLASHES);
   }
 
-  public static function edit($id){
-    // show edit form
-  }
-
   public static function show( Request $request, $id ){
     // show the message #id
     $message = MessageModel::where( 'id', $id )->get();
@@ -64,8 +60,22 @@ class Message {
 
   }
 
-  public static function update( Request $request, $id ){
+  public static function update( Request $request, Application $app, $id ){
     // update the message #id, using PUT method
+    $code = 400;
+    $_message = $request->get('message');
+    $message = MessageModel::find( $id );
+    $message->body = $_message;
+    $message->save();
+
+    if ( $message->id ) {
+      $payload = ['message_id' => $message->id, 'message_uri' => '/messages/' . $message->id];
+      $code = 201;
+    }
+    else
+      $payload = [];
+
+    return $app->json( $payload, $code );
   }
 
   public static function destroy($id){

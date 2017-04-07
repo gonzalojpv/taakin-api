@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Todos\Middleware\Authentication as TodoAuth;
 
+Request::enableHttpMethodParameterOverride();
+
 $app     = new Application();
 $capsule = new Capsule();
 
