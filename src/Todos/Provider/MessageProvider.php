@@ -14,15 +14,15 @@ class MessageProvider implements ControllerProviderInterface {
     $message = $app["controllers_factory"];
     $self = new Message();
 
-    $message->post("/create", array( $self, "store" ) );
+    $message->get("/", array( $self, "index" ) );
+
+    $message->post("/", array( $self, "store" ) );
 
     $message->get("/{id}", array( $self, "show" ) );
 
-    $message->get("/edit/{id}", array( $self, "edit" ) );
+    $message->put("/{id}", array( $self, "update" ) );
 
-    $message->post("/{id}", array( $self, "update" ) );
-
-    $message->post("/delete/{id}", array( $self, "destroy" ) );
+    $message->delete("/{id}", array( $self, "destroy" ) );
 
     return $message;
 

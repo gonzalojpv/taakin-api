@@ -6,7 +6,7 @@ use Todos\Models\User;
  */
 class Authentication
 {
-  public function authenticate( $request, $app ) {
+  public static function authenticate( $request, $app ) {
 
     $auth = $request->headers->get("auth");
     $apikey = substr($auth, strpos($auth, ' '));
@@ -16,9 +16,8 @@ class Authentication
 
     if ( !$check )
       $app->abort(401);
-    else {
+    else
       $request->attributes->set( 'userid', $check );
-    }
 
   }
 }
