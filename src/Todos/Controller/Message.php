@@ -9,7 +9,7 @@ use Todos\Models\Message as MessageModel;
  */
 class Message {
 
-  public static function index( Request $request ) {
+  public static function index( Request $request, Application $app ) {
     $message = MessageModel::where('user_id', $request->attributes->get('userid'))->get();
     $payload = [];
 
@@ -23,10 +23,10 @@ class Message {
         ];
     }
 
-    return json_encode($payload, JSON_UNESCAPED_SLASHES);
+    return $app->json($payload, 200);
   }
 
-  public static function show( Request $request, $id ){
+  public static function show( Request $request, Application $app, $id ){
     // show the message #id
     $message = MessageModel::where( 'id', $id )->get();
 
@@ -39,7 +39,7 @@ class Message {
         ];
     }
 
-    return json_encode($payload, JSON_UNESCAPED_SLASHES);
+    return $app->json($payload, 200);
   }
 
   public static function store( Request $request, Application $app ){
