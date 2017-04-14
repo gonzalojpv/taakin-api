@@ -1,6 +1,14 @@
-# api-silex-angularjs
+
+# api-silex
 
 
-Adding Eloquent to your application
+Installing Silex
 
-composer require illuminate/database "~5.2"
+composer require silex/silex "2.0"
+
+
+Install Eloquent in Silex
+
+composer require illuminate/database "5.2"
+
+
