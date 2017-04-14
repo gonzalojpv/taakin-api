@@ -19,7 +19,8 @@ class Message {
         [
           'body' => $msg->body,
           'user_id' => $msg->user_id,
-          'created_at' => $msg->created_at
+          'complite' => $msg->complite
+          //'created_at' => $msg->created_at
         ];
     }
 

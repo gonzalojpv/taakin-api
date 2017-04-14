@@ -9,45 +9,53 @@ use Todos\Models\Task as TaskModel;
  */
 class Task {
 
-  public static function index( Request $request ) {
+  public static function index( Request $request, Application $app ) {
     $task = TaskModel::where('user_id', $request->attributes->get('userid'))->get();
     $payload = [];
 
     foreach ($task as $msg){
 
-      $payload[$msg->id] =
+      $payload[] =
         [
+          'id' => $msg->id,
           'title' => $msg->title,
           'user_id' => $msg->user_id,
-          'created_at' => $msg->created_at
+          'complete' => $msg->complete
         ];
     }
 
-    return json_encode($payload, JSON_UNESCAPED_SLASHES);
+    return $app->json($payload, 200);
   }
 
-  public static function show( Request $request, $id ){
+  public static function show( Request $request, Application $app, $id ){
     // show the task #id
     $task = TaskModel::where( 'id', $id )->get();
 
     foreach ($task as $msg){
-      $payload[$msg->id] =
+      $payload[] =
         [
+          'id' => $msg->id,
           'title' => $msg->title,
           'user_id' => $msg->user_id,
           'created_at' => $msg->created_at
         ];
     }
 
-    return json_encode($payload, JSON_UNESCAPED_SLASHES);
+    return $app->json($payload, 200);
   }
 
   public static function store( Request $request, Application $app ){
     // create a new task, using POST method
     $code = 400;
-    $_task = $request->get('task');
+    $_task = $request->get('title');
+    $_complete = 0;
+
+    if ( ! empty( $request->get('complete') ) )
+      $_complete = boolean( $request->get('complete') );
+
     $task  = new TaskModel();
     $task->title    = $_task;
+    $task->complete    = $_complete;
     $task->user_id = $request->attributes->get('userid');
 
     if ( $task->save() ) {
