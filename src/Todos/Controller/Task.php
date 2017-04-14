@@ -50,8 +50,8 @@ class Task {
     $_task = $request->get('title');
     $_complete = 0;
 
-    if ( ! empty( $request->get('complete') ) )
-      $_complete = boolean( $request->get('complete') );
+    if ( ! empty( $request->get('complete') )  && 'true' == $request->get('complete') )
+      $_complete = 1;
 
     $task  = new TaskModel();
     $task->title    = $_task;
@@ -72,9 +72,16 @@ class Task {
   public static function update( Request $request, Application $app, $id ){
     // update the task #id, using PUT method
     $code = 400;
-    $_task = $request->get('task');
+    $_task = $request->get('title');
+    $_complete = 0;
+
+    if ( 'true' == $request->get('complete') )
+      $_complete = 1;
+
     $task = TaskModel::find( $id );
     $task->title = $_task;
+    $task->complete = $_complete;
+
     $task->save();
 
     if ( $task->id ) {
@@ -87,7 +94,7 @@ class Task {
     return $app->json( $payload, $code );
   }
 
-  public static function destroy($id){
+  public static function destroy( $id ){
     // delete the task #id, using DELETE method
     $task = TaskModel::find( $id );
     $task->delete();
