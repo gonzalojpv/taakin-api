@@ -1,0 +1,44 @@
+{% extends 'templates/app.twig' %}
+
+{% block main %}
+<div class="container">
+  <div class="top">
+    <h1 id="title" class="hidden"><span id="logo">Taak'<span>In</span></span></h1>
+  </div>
+  <div class="login-box animated fadeInUp">
+
+    <div class="row collapse">
+      <div class="small-12 columns">
+        <div class="box-header">
+          <h2>Log In</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <label for="username">Username
+          <input type="text" id="username">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <label for="password">Password
+          <input type="password" id="password">
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <button type="submit">Sign In</button>
+        <br/>
+        <a href="#"><p class="small">Forgot your password?</p></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
