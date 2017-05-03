@@ -11,7 +11,7 @@ $app['debug'] = true;
 $capsule->addConnection([
   "driver"     => "mysql",
   "host"       => "localhost",
-  "database"   => "apisilex",
+  "database"   => "taakin",
   "username"   => "root",
   "password"   => "gjpv",
   "charset"    => "utf8",
