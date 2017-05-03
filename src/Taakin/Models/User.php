@@ -1,5 +1,5 @@
 <?php
-namespace Todos\Models;
+namespace Taakin\Models;
 
 /**
  *

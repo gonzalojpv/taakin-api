@@ -1,9 +1,9 @@
 <?php
-namespace Todos\Controller;
+namespace Taakin\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Todos\Models\Message as MessageModel;
+use Taakin\Models\Message as MessageModel;
 /**
  *
  */

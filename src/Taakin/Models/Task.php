@@ -1,6 +1,6 @@
 <?php
 
-namespace Todos\Models;
+namespace Taakin\Models;
 
 Class Task extends \Illuminate\Database\Eloquent\Model
 {

@@ -1,9 +1,9 @@
 <?php
-namespace Todos\Controller;
+namespace Taakin\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Todos\Models\Task as TaskModel;
+use Taakin\Models\Task as TaskModel;
 /**
  *
  */

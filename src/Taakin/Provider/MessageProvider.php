@@ -1,8 +1,8 @@
 <?php
-namespace Todos\Provider;
+namespace Taakin\Provider;
 
 use Silex\Application;
-use Todos\Controller\Message;
+use Taakin\Controller\Message;
 use Silex\Api\ControllerProviderInterface;
 /**
  *

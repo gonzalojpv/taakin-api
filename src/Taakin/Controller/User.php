@@ -1,5 +1,5 @@
 <?php
-namespace Todos\Controller;
+namespace Taakin\Controller;
 
 /**
  *

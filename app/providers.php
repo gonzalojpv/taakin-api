@@ -4,7 +4,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Todos\Middleware\Authentication as TodoAuth;
+use Taakin\Middleware\Authentication as TodoAuth;
 
 Request::enableHttpMethodParameterOverride();
 

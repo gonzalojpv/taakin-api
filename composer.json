@@ -5,6 +5,6 @@
         "jdesrosiers/silex-cors-provider": "~1.0"
     },
     "autoload": {
-        "psr-4": {"Todos\\": "src/Todos/"}
+        "psr-4": {"Taakin\\": "src/Taakin/"}
     }
 }

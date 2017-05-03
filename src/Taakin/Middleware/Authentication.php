@@ -1,6 +1,6 @@
 <?php
-namespace Todos\Middleware;
-use Todos\Models\User;
+namespace Taakin\Middleware;
+use Taakin\Models\User;
 /**
  *
  */
