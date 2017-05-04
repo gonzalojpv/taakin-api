@@ -6,7 +6,7 @@
     <h1 id="title" class="hidden"><span id="logo">Taak'<span>In</span></span></h1>
   </div>
   <div class="login-box animated fadeInUp">
-
+    {{ form_start(form) }}
     <div class="row collapse">
       <div class="small-12 columns">
         <div class="box-header">
@@ -17,8 +17,9 @@
 
     <div class="row">
       <div class="small-12 columns">
-        <label for="username">Username
-          <input type="text" id="username">
+
+        <label for="username">Email
+          {{ form_widget( form.email ) }}
         </label>
       </div>
     </div>
@@ -26,19 +27,19 @@
     <div class="row">
       <div class="small-12 columns">
         <label for="password">Password
-          <input type="password" id="password">
+          {{ form_widget( form.password ) }}
         </label>
       </div>
     </div>
 
     <div class="row">
       <div class="small-12 columns">
-        <button type="submit">Sign In</button>
+        {{ form_widget(form.submit) }}
         <br/>
         <a href="#"><p class="small">Forgot your password?</p></a>
       </div>
     </div>
-
+    {{ form_end(form) }}
   </div>
 </div>
 {% endblock %}

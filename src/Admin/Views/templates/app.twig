@@ -9,10 +9,16 @@
     <link rel="stylesheet" href="{{ asset('assets/bower_components/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
   </head>
-  <body>
-    {% include 'partials/header.twig' %}
+  <body class="{{ current_page_name|replace({ "'\'": "", "/" : "" }) }}" >
+    {% if not baseUrl is empty %}
+      {% include 'partials/header.twig' %}
+    {% endif %}
+
     {% block main %}{% endblock %}
-    {% include 'partials/footer.twig' %}
+
+    {% if not baseUrl is empty %}
+      {% include 'partials/footer.twig' %}
+    {% endif %}
 
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.js') }}"></script>
     <script src="{{ asset('assets/bower_components/what-input/dist/what-input.js') }}"></script>

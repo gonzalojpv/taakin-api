@@ -14,17 +14,13 @@ class IndexProvider implements ControllerProviderInterface {
     $admin = $app["controllers_factory"];
     $self = new IndexController();
 
-    $admin->get("/", array( $self, "index" ) );
+    $admin->get("/", array( $self, "index" ) )->bind( 'home' );
 
-    $admin->post("/create", array( $self, "store" ) );
+    $admin->post("/", array( $self, "index" ) )->bind( 'login' );
 
-    $admin->get("/{id}", array( $self, "show" ) );
+    $admin->post("/logout/", array( $self, "logout" ) )->bind( 'logout' );
 
-    $admin->get("/edit/{id}", array( $self, "edit" ) );
-
-    $admin->post("/{id}", array( $self, "update" ) );
-
-    $admin->post("/delete/{id}", array( $self, "destroy" ) );
+    $admin->get("/dashboard/", array( $self, "dashboard" ) )->bind( 'dashboard' );
 
     return $admin;
 

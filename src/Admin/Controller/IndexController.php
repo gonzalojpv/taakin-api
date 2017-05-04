@@ -1,35 +1,72 @@
 <?php
 namespace Admin\Controller;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Taakin\Models\User;
 
 /**
  *
  */
 class IndexController {
 
-  public static function index( Application $app ) {
+  private static $action = '';
+  private static $data = [];
 
-    return $app['twig']->render('admin/home.twig', ['name' => 'Fabien']);
+  public static function index( Request $request, Application $app ) {
+
+    if ( null != $app['session']->get('user_id') )
+      return $app->redirect('/dashboard/');
+
+    self::$action = $app['url_generator']->generate( 'login' );
+    $form = $app['form.factory']->createBuilder( FormType::class )
+      ->setAction( self::$action )
+      ->setMethod( 'POST' )
+      ->add( 'email', EmailType::class )
+      ->add( 'password', PasswordType::class )
+      ->add( 'submit', SubmitType::class, array(
+        'label' => 'Sign In',
+      ) )
+      ->getForm();
+
+    $form->handleRequest( $request );
+
+    if ( $form->isValid() ) {
+
+      $data = $form->getData();
+      $user = User::where( 'email', $data['email'] )
+        ->where( 'password', md5( $data['password'] ) )
+        ->get();
+
+      if ( ! $user->isEmpty() ) {
+        $user = $user->first();
+        $app['session']->set('user_id', $user->id);
+        $app['session']->set('email', $user->email);
+        $app['session']->set('username', $user->username);
+        return $app->redirect('/dashboard/');
+      }
+    }
+
+    self::$data['form']= $form->createView();
+    return $app['twig']->render('admin/home.twig', self::$data );
   }
 
-  public static function edit( $id ) {
-    // show edit form
+  public static function logout( Request $request, Application $app ) {
+    $app['session']->clear();
+
+    return $app->redirect('/');
   }
 
-  public static function show( $id ) {
-    // show the user #id
-  }
+  public static function dashboard( Request $request, Application $app ) {
 
-  public static function store() {
-    // create a new user, using POST method
-  }
+    if ( null === $app['session']->get('user_id') )
+      return $app->redirect('/');
 
-  public static function update( $id ) {
-    // update the user #id, using PUT method
-  }
-
-  public static function destroy( $id ) {
-    // delete the user #id, using DELETE method
+    self::$data['baseUrl'] = $request->getRequestUri();
+    return $app['twig']->render('admin/dashboard.twig', self::$data );
   }
 }
 

@@ -5,7 +5,10 @@
         "jdesrosiers/silex-cors-provider": "~1.0",
         "twig/twig": "^1.33",
         "symfony/twig-bridge": "^3.2",
-        "symfony/asset": "^3.2"
+        "symfony/asset": "^3.2",
+        "symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/config": "^3.2"
     },
     "autoload": {
         "psr-4": {"Taakin\\": "src/Taakin/", "Admin\\": "src/Admin/"}
