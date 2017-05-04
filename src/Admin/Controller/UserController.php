@@ -20,6 +20,8 @@ class UserController {
 
   public static function index( Application $app ) {
 
+    self::$data['users'] = User::all();
+
     return $app['twig']->render('admin/user-list.twig', self::$data );
   }
 
