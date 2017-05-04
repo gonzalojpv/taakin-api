@@ -22,7 +22,6 @@ class IndexController {
       return $app->redirect('/dashboard/');
 
     self::$action = $app['url_generator']->generate( 'login' );
-    self::$data['baseUrl'] = '';
 
     $form = $app['form.factory']->createBuilder( FormType::class )
       ->setAction( self::$action )
@@ -67,7 +66,6 @@ class IndexController {
     if ( null === $app['session']->get('user_id') )
       return $app->redirect('/');
 
-    self::$data['baseUrl'] = $request->getRequestUri();
     return $app['twig']->render('admin/dashboard.twig', self::$data );
   }
 }

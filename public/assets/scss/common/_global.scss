@@ -1,0 +1,16 @@
+.card-box {
+  background-color: $vapor;
+  margin: 5rem;
+  padding: 2rem;
+  position: relative;
+}
+
+
+[type=text],
+[type=password],
+[type=email],
+[type=number],
+textarea {
+  border: none;
+  box-shadow: none;
+}
