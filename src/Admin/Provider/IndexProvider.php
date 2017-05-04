@@ -18,7 +18,7 @@ class IndexProvider implements ControllerProviderInterface {
 
     $admin->post("/", array( $self, "index" ) )->bind( 'login' );
 
-    $admin->post("/logout/", array( $self, "logout" ) )->bind( 'logout' );
+    $admin->get("/logout/", array( $self, "logout" ) )->bind( 'logout' );
 
     $admin->get("/dashboard/", array( $self, "dashboard" ) )->bind( 'dashboard' );
 

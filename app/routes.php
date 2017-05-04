@@ -5,4 +5,5 @@ $app->mount("/customers", new Taakin\Provider\CustomerProvider());
 $app->mount("/payments", new Taakin\Provider\PaymentProvider());
 
 $app->mount("/", new Admin\Provider\IndexProvider());
+$app->mount("/dashboard/users", new Admin\Provider\UserProvider());
 ?>

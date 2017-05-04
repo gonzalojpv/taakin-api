@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="{{ asset('assets/bower_components/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
   </head>
-  <body class="{{ current_page_name|replace({ "'\'": "", "/" : "" }) }}" >
-    {% if not baseUrl is empty %}
+  {% set baseUrl = current_page_name|replace({ "'\'": "", "/" : "" }) %}
+  <body class="{{ baseUrl }}" >
+    {% if "" != baseUrl %}
       {% include 'partials/header.twig' %}
     {% endif %}
 
     {% block main %}{% endblock %}
 
-    {% if not baseUrl is empty %}
+    {% if "" != baseUrl %}
       {% include 'partials/footer.twig' %}
     {% endif %}
 
