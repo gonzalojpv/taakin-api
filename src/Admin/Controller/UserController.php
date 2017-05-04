@@ -39,14 +39,16 @@ class UserController {
     $form->handleRequest( $request );
 
     if ( $form->isValid() ) {
-
       $data = $form->getData();
       $user = new User();
+      $user->apikey = uniqid( 'pk_taakin', TRUE );
 
       foreach ($data as $key => $value)
-        $customer->{$key} = $value;
+        $user->{$key} = $value;
 
-      if ( ! $user->save() ) {
+      $user->password = md5( $data['password'] );
+
+      if ( $user->save() ) {
         $redirect = $app['url_generator']->generate( 'user-list' );
         return $app->redirect( $redirect );
       }
