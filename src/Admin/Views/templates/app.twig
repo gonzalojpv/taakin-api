@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/animate.css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+  </head>
+  <body class="{{ current_page_name|replace({ "'\'": "", "/" : "" }) }}" >
+    {% if not baseUrl is empty %}
+      {% include 'partials/header.twig' %}
+    {% endif %}
+
+    {% block main %}{% endblock %}
+
+    {% if not baseUrl is empty %}
+      {% include 'partials/footer.twig' %}
+    {% endif %}
+
+    <script src="{{ asset('assets/bower_components/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/what-input/dist/what-input.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/foundation-sites/dist/js/foundation.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+  </body>
+</html>
