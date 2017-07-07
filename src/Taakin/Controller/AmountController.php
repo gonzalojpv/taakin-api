@@ -40,6 +40,7 @@ class AmountController {
     $amount = new Amount();
     $amount->amount = $request->get('amount');
     $amount->customer_id = $request->get('customer_id');
+    $amount->start_date = $request->get('start_date');
     $amount->code = self::getToken(10);
 
     if ( $amount->save() ) {
